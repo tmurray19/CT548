@@ -14,6 +14,11 @@ public interface StrategyPlanner {
 	
 	*/
 	
+	static void fromTo(String A, String B) {
+		Country a = new Country(A);
+		Country b = new Country(B);
+	}
+	
 	static String byPlane() {
 		return "Plane";
 	}

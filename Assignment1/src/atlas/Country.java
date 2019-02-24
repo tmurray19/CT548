@@ -3,7 +3,6 @@ package atlas;
 // This needs to print out population
 // Print out bordering countries
 
-import java.io.FileReader;
 //import java.util.Iterator;
 import java.util.ArrayList;
  
@@ -18,7 +17,6 @@ public class Country {
 	
 	//Initialising variables
 	private int population;
-	private static JSONParser parser = new JSONParser();
 	private ArrayList<City> cities = new ArrayList<>();
 	private JSONObject jsonCities;
 	
@@ -26,24 +24,20 @@ public class Country {
 	// Retrieve and define the jsonCities JSONObject
 	public void dataSetter() {
 		try {
-			//Read json file as object
-			Object obj = parser.parse(new FileReader("src/cities.json"));
-
-			//Cast as JSONObject
-			JSONObject jsonCities = (JSONObject) obj;
-			
-			this.jsonCities = jsonCities;
+			//Sets jsonCities to the JSONObject called in the FileParser class
+			this.jsonCities = FileParser.dataSetter();
+	
 		}
-		
+		//This exception is to stop misreading files
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+		
 	
 	//Returns the array of countries bordering a given country
 	public JSONArray getCountryBorder(String country) {
 		try {
-			
 			//Get borders of countries
 			JSONObject borders = (JSONObject) jsonCities.get("bordering");
 
@@ -59,10 +53,14 @@ public class Country {
 		}
 	}
 	
+	//Checks if two given countries share a border
 	public Boolean borderChecker(String country1, String country2) {
+		// If the list of a given country contains the other given country
 		if(getCountryBorder(country1).contains(country2)) {
+			//returns true
 			return true;
 		}
+		//otherwise returns false
 		else {
 			return false;
 		}
@@ -73,14 +71,23 @@ public class Country {
 		cities.add(c);
 	}
 	
+	// Returns total population of country, based on cities
+	public int getPop() {
+		for(City c: cities) {
+			this.population += c.populationGetter();
+		}
+		return this.population;
+	}
+	
+	
 	// Constructor 
 	public Country(String name) {
 		//Initialise Data
 		dataSetter();
 		//Add the countries' cities from json file to arraylist
-
+		//for(city C in jsonCities.cities){
+		//	cities.add(c);
 			
-
 	}
 	
 
