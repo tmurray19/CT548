@@ -77,7 +77,33 @@ public class TravelGuide {
 			//System.out.println(borderChecker("Ireland", "United Kingdom"));
 			//System.out.println(getCountryBorder("Ireland"));
 
+			
+			JSONParser parser = new JSONParser();
 
+			
+			//Read in as object
+			Object obj = parser.parse(new FileReader("src/cities.json"));
+			
+			//Cast as JSONObject
+			JSONObject jsonCities = (JSONObject) obj;
+
+			//Get countries data
+			JSONArray countries = (JSONArray) jsonCities.get("countries");
+			
+			
+			//String name = "Ireland";
+			//JSONObject country = (JSONObject) countries.get(name);
+			
+			//System.out.println(country);
+			
+			
+			// Prints the name of each city in each Country
+			String c = "Ireland";
+			
+			System.out.println();
+			
+
+			
 		}
 		
 		
