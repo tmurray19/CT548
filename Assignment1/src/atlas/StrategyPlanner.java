@@ -14,23 +14,8 @@ public interface StrategyPlanner {
 	
 	*/
 	
-	static void fromTo(String A, String B) {
-		Country a = new Country(A);
-		Country b = new Country(B);
-	}
-	
-	static String byPlane() {
-		return "Plane";
-	}
-	
-	static String byBus() {
-		return "Bus";
-	}
+	public void fromTo(Country conA, City cityA, Country conB, City cityB);
 
-	static String byTrain() {
-		return "Train";
-	}
-	
 	/*TODO:
 	 * Add Population to data
 	 * Allow for reading from 

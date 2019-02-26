@@ -13,6 +13,7 @@ public class Utility {
 
 	
 	// Retrieve and define the jsonCities JSONObject
+	// Can be considered a constructor of sorts
 	public static void dataSetter() {
 		try {
 			//Sets jsonCities to the JSONObject called in the FileParser class
@@ -29,6 +30,7 @@ public class Utility {
 	//Returns the array of countries bordering a given country
 	public static JSONArray getCountryBorder(String country) {
 		try {
+			dataSetter();
 			//Get borders of countries
 			JSONObject borders = (JSONObject) jsonCities.get("bordering");
 
@@ -57,5 +59,12 @@ public class Utility {
 		}
 	}
 	
-	
+	// Gets the list of countries in the list
+	public static void getCountries() {
+		JSONArray countries = (JSONArray) FileParser.dataSetter().get("countries");
+		for(int i = 0, size = countries.size(); i < size; i++) {
+			JSONObject objectInArray = (JSONObject) countries.get(i);
+			System.out.println(objectInArray.get("name"));
+		}
+	}
 }

@@ -1,7 +1,5 @@
 package atlas;
 import java.util.Scanner;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 public class WorldAtlas {
 
@@ -18,8 +16,10 @@ public class WorldAtlas {
 		System.out.println("-How many people live here? (5)");
 		System.out.println("-What cities are in this country? (6)");
 		
+		// Ask for user input
 		int response = userIn.nextInt();
 		userIn.nextLine();
+		
 		// Switch case to run different code depending on the user's input
 		switch(response) {
 		
@@ -27,30 +27,43 @@ public class WorldAtlas {
 			/* Complete */
 		case 1:
 			System.out.println("Here are all the countries in the world:");
-			JSONArray countries = (JSONArray) FileParser.dataSetter().get("countries");
-			for(int i = 0, size = countries.size(); i < size; i++) {
-				JSONObject objectInArray = (JSONObject) countries.get(i);
-				System.out.println(objectInArray.get("name"));
-			}
-			
+			Utility.getCountries();
 			break;
 			
 		// Case 2 - the Trip planner	
+		// It may be best to ask for country, then city.
 		case 2:
-			System.out.println("Please enter where you are: ");
-			String A = userIn.nextLine();
-			System.out.println("Please enter where you want to go: ");
-			String B = userIn.nextLine();
-			System.out.println(A);
-			System.out.println(B);
+			System.out.println("Please enter the country you are in: ");
+			String countryInA = userIn.nextLine();
+			Country countryA = new Country(countryInA);
+			
+			System.out.println("Please enter the city you are in: ");
+			String cityInA = userIn.nextLine();
+			City cityA = new City(cityInA);
+			
+			System.out.println("Please enter the country you want to go: ");
+			String countryInB = userIn.nextLine();
+			Country countryB = new Country(countryInB);
+			
+			System.out.println("Please enter the city you want to go to: ");
+			String cityInB = userIn.nextLine();
+			City cityB = new City(cityInB);
+
 			
 			break;
 		
 		// Case 3 - What countries border a given country
+			/* Complete */
 		case 3:
 			System.out.println("Please enter the country you wish to verify: ");
 			String borderCheck = userIn.nextLine();
-			Utility.getCountryBorder(borderCheck);
+			
+			// Prints out list in neater manor
+			for(Object s: Utility.getCountryBorder(borderCheck)) {
+				System.out.println(s);
+			}
+			
+			break;
 			
 		// Case 4 - Checking if two countries border each other
 			/* Complete */
@@ -64,9 +77,24 @@ public class WorldAtlas {
 			break;
 			
 		// Case 5 - getting population of location (City or Country)
+			/* Complete */
 		case 5:
-			System.out.println("Where do you want to know the population:");
-			//String place = userIn.nextLine();
+			System.out.println("Would you like to know the City(0) or Country(1) population?");
+			int i = userIn.nextInt();
+			userIn.nextLine();
+			System.out.println("Please enter the place you wish to know the population of: ");
+			String name = userIn.nextLine();
+			
+			// City case
+			if(i == 0) {
+				City city = new City(name);
+				System.out.println("Population of " + name + " is " + city.getPop());
+			}
+			// Country case
+			if(i == 1) {
+				Country country = new Country(name);
+				System.out.println("Population of " + name + " is " + country.getPop());
+			}
 			
 			break;
 		// Case 6 - getting cities in country
@@ -79,7 +107,7 @@ public class WorldAtlas {
 			
 			break;
 			
-		// Might be depreciated
+		// Might be depreciated, but to stop any new line issues 
 		case '\n':
 			break;
 			
@@ -87,7 +115,7 @@ public class WorldAtlas {
 		default:
 			System.out.println("Unknown response.");
 			break;
-		}
+		}//end switch
 		
 		// Finishing program
 		System.out.println("Done");

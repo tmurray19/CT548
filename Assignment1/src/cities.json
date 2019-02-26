@@ -4,16 +4,20 @@
 	  "name" : "Ireland",
 	  "cities" : [{
 		  "id" : 101,
-		  "name" : "Dublin"
+		  "name" : "Dublin",
+      "pop" : 1000000
 	  },{
 		  "id" : 102,
-		  "name" : "Galway"
+		  "name" : "Galway",
+      "pop" : 300000
 	  },{
 		  "id" : 103,
-		  "name" : "Cork"
+		  "name" : "Cork",
+      "pop" : 250000
 	  },{
 		  "id" : 104,
-		  "name" : "Limerick"
+		  "name" : "Limerick",
+      "pop" : 200000
 	  }],
 	  "capital" : 101
   },{
@@ -21,13 +25,16 @@
 	  "name" : "United Kingdom",
 	  "cities" : [{
 		  "id" : 201,
-		  "name" : "London"
+		  "name" : "London",
+      "pop" : 8000000
 	  },{
 		  "id" : 202,
-		  "name" : "Birmingham"
+		  "name" : "Birmingham",
+      "pop" : 1000000
 	  },{
 		  "id" : 203,
-		  "name" : "Manchester"
+		  "name" : "Manchester",
+      "pop" : 1000000
 	  }],
 	  "capital" : 201
   },{
@@ -35,13 +42,16 @@
 	  "name" : "United States",
 	  "cities" : [{
 		  "id" : 301,
-		  "name" : "Washington DC"
+		  "name" : "Washington DC",
+      "pop" : 15000000
 	  },{
 		  "id" : 302,
-		  "name" : "New York City"
+		  "name" : "New York City",
+      "pop" : 8000000
 	  },{
 		  "id" : 303,
-		  "name" : "Los Angeles"
+		  "name" : "Los Angeles",
+      "pop" : 1500000
 	  }],
 	  "capital" : 301
   },{
@@ -49,10 +59,12 @@
 	  "name" : "Canada",
 	  "cities" : [{
 		  "id" : 401,
-		  "name" : "Ottawa"
+		  "name" : "Ottawa",
+      "pop" : 1000000
 	  },{
 		  "id" : 402,
-		  "name" : "Toronto"
+		  "name" : "Toronto",
+      "pop" : 1000000
 	  }],
 	  "capital" : 401
   },{
@@ -60,16 +72,20 @@
 	  "name" : "Mexico",
 	  "cities" : [{
 		  "id" : 501,
-		  "name" : "Mexico City"
+		  "name" : "Mexico City",
+      "pop" : 3000000
 	  },{
 		  "id" : 502,
-		  "name" : "Tijuana"
+		  "name" : "Tijuana",
+      "pop" : 1000000
 	  },{
 		  "id" : 503,
-		  "name" : "Juárez"
+		  "name" : "Juárez",
+      "pop" : 600000
 	  },{
 		  "id" : 504,
-		  "name" : "Acapulco"
+		  "name" : "Acapulco",
+      "pop" : 500000
 	  }],
 	  "capital" : 501
   },{
@@ -77,13 +93,16 @@
 	  "name" : "Italy",
 	  "cities" : [{
 		  "id" : 601,
-		  "name" : "Rome"
+		  "name" : "Rome",
+      "pop" : 2500000
 	  },{
 		  "id" : 602,
-		  "name" : "Milan"
+		  "name" : "Milan",
+      "pop" : 400000
 	  },{
 		  "id" : 603,
-		  "name" : "Naples"
+		  "name" : "Naples",
+      "pop" : 300000
 	  }],
 	  "capital" : 601
   },{
@@ -91,13 +110,16 @@
 	  "name" : "Austria",
 	  "cities" : [{
 		  "id" : 701,
-		  "name" : "Vienna"
+		  "name" : "Vienna",
+      "pop" : 1700000
 	  },{
 		  "id" : 702,
-		  "name" : "Innsbruck"
+		  "name" : "Innsbruck",
+      "pop" : 300000
 	  },{
 		  "id" : 703,
-		  "name" : "Salzburg"
+		  "name" : "Salzburg",
+      "pop" : 20000
 	  }],
 	  "capital" : 701
   },{
@@ -105,16 +127,20 @@
 	  "name" : "Switzerland",
 	  "cities" : [{
 		  "id" : 801,
-		  "name" : "Bern"
+		  "name" : "Bern",
+      "pop" : 500000
 	  },{
 		  "id" : 802,
-		  "name" : "Zurich"
+		  "name" : "Zurich",
+      "pop" : 300000
 	  },{
 		  "id" : 803,
-		  "name" : "Lausanne"
+		  "name" : "Lausanne",
+      "pop" : 200000
 	  },{
 		  "id" : 804,
-		  "name" : "Lugano"
+		  "name" : "Lugano",
+      "pop" : 15000
 	  }],
 	  "capital" : 801
   },{
@@ -122,10 +148,12 @@
 	  "name" : "Nigeria",
 	  "cities" : [{
 		  "id" : 901,
-		  "name" : "Lagos"
+		  "name" : "Lagos",
+      "pop" : 3000000
 	  },{
 		  "id" : 902,
-		  "name" : "Benin"
+		  "name" : "Benin",
+      "pop" : 200000
 	  }],
 	  "capital" : 901
   },{
@@ -133,13 +161,16 @@
 	  "name" : "China",
 	  "cities" : [{
 		  "id" : 1001,
-		  "name" : "Beijing"
+		  "name" : "Beijing",
+      "pop" : 10000000
 	  },{
 		  "id" : 1002,
-		  "name" : "Hong Kong"
+		  "name" : "Hong Kong",
+      "pop" : 7000000
 	  },{
 		  "id" : 1003,
-		  "name" : "Macau"
+		  "name" : "Macau",
+      "pop" : 1000000
 	  }],
 	  "capital" : 1001
   },{
@@ -147,13 +178,16 @@
 	  "name" : "Russia",
 	  "cities" : [{
 		  "id" : 1101,
-		  "name" : "Moscow"
+		  "name" : "Moscow",
+      "pop" : 5000000
 	  },{
 		  "id" : 1102,
-		  "name" : "Saint Petersburg"
+		  "name" : "Saint Petersburg",
+      "pop" : 1000000
 	  },{
 		  "id" : 1103,
-		  "name" : "Novosibirsk"
+		  "name" : "Novosibirsk",
+      "pop" : 800000
 	  }],
 	  "capital" : 1101
   },{
@@ -161,13 +195,16 @@
 	  "name" : "France",
 	  "cities" : [{
 		  "id" : 1201,
-		  "name" : "Paris"
+		  "name" : "Paris",
+      "pop" : 4000000
 	  },{
 		  "id" : 1202,
-		  "name" : "Lyon"
+		  "name" : "Lyon",
+      "pop" : 700000
 	  },{
 		  "id" : 1203,
-		  "name" : "Bordeaux"
+		  "name" : "Bordeaux",
+      "pop" : 600000
 	  }],
 	  "capital" : 1201
   },{
@@ -175,13 +212,16 @@
 	  "name" : "Spain",
 	  "cities" : [{
 		  "id" : 1301,
-		  "name" : "Barcelona"
+		  "name" : "Barcelona",
+      "pop" : 4500000
 	  },{
 		  "id" : 1302,
-		  "name" : "Madrid"
+		  "name" : "Madrid",
+      "pop" : 1000000
 	  },{
 		  "id" : 1303,
-		  "name" : "Seville"
+		  "name" : "Seville",
+      "pop" : 700000
 	  }],
 	  "capital" : 1301
   },{
@@ -189,13 +229,16 @@
 	  "name" : "Brazil",
 	  "cities" : [{
 		  "id" : 1401,
-		  "name" : "Brasilia"
+		  "name" : "Brasilia",
+      "pop" : 1600000
 	  },{
 		  "id" : 1402,
-		  "name" : "Rio de Janeiro"
+		  "name" : "Rio de Janeiro",
+      "pop" : 12000000
 	  },{
 		  "id" : 1403,
-		  "name" : "Sao Paulo"
+		  "name" : "Sao Paulo",
+      "pop" : 5000000
 	  }],
 	  "capital" : 1401
   }],
@@ -211,7 +254,7 @@
     "Nigeria" : [],
     "China" : ["Russia"],
     "Russia" : ["China"],
-    "France" : ["United Kingdom", "Italy", "Austria"],
+    "France" : ["United Kingdom", "Italy", "Austria", "France"],
     "Spain" : ["France"],
     "Brazil" : ["Mexico"],
   }

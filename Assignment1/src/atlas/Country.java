@@ -12,15 +12,11 @@ import org.json.simple.JSONObject;
  
 
 
-public class Country {
+public class Country extends Area{
 	//Country Class
 	
 	//Initialising variables
-	private int population;
 	private ArrayList<City> cities = new ArrayList<>();
-	private JSONObject jsonCities;
-
-	
 	
 	// Add a city to the city arrayList
 	public void addCity(City c) {
@@ -29,45 +25,59 @@ public class Country {
 	
 	// Returns all cities in arraylist
 	public void getCities() {
-		for(City c: cities) {
+		for(City c: this.cities) {
 			System.out.println(c.getName());
 		}
 	}
 	
 	// Returns total population of country, based on cities
-	public int getPop() {
+	@Override
+	public long getPop() {
+		long r = 0;
 		for(City c: cities) {
-			this.population += c.populationGetter();
+			r += (c.getPop());
 		}
-		return this.population;
+		return r;
 	}
+	
 	
 	
 	// Constructor 
 	public Country(String name) {
 		//Initialise Data
-		Utility.dataSetter();
+		setName(name);
 		//Add the countries' cities from json file to arraylist
 		
+		// Adding cities to arraylist
 		
-		JSONArray country = (JSONArray) jsonCities.get("countries");
+		// A rather dirty solution, but my knowledge with JSON is limited
+		// Please cut me a little slack, I'm learning as I'm coding here
+		
+		JSONArray country = (JSONArray) FileParser.dataSetter().get("countries");
 		for(Object j: country) {
-			//System.out.println(j);
+			// Cast j as a JSONObject
 			JSONObject h = (JSONObject) j;
+			// Get the name of the country h
 			String r = (String) (h.get("name"));
+			// Get the cities of the country h
 			JSONArray cities = (JSONArray) h.get("cities");
 			//System.out.println(cities);
 			
+			// If the country found is the one being init, then add cities to arraylist
 			if(r.equals(name)) {
 				for(Object n: cities) {
+					// Casting n as a JSONObject
 					JSONObject m = (JSONObject) n;
+					// Getting the name of the city for city creation
 					String cityName =(String) m.get("name");
-					
+					// Creating city 
 					City city = new City(cityName);
+					// Adding it to list
 					addCity(city);
 				}
 				break;
 			}
+			
 		}
 		
 			
