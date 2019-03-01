@@ -16,8 +16,4 @@ public interface StrategyPlanner {
 	
 	public void fromTo(Country conA, City cityA, Country conB, City cityB);
 
-	/*TODO:
-	 * Add Population to data
-	 * Allow for reading from 
-	 */
 }

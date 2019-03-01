@@ -254,7 +254,7 @@
     "Nigeria" : [],
     "China" : ["Russia"],
     "Russia" : ["China"],
-    "France" : ["United Kingdom", "Italy", "Austria", "France"],
+    "France" : ["United Kingdom", "Italy", "Austria", "Spain"],
     "Spain" : ["France"],
     "Brazil" : ["Mexico"],
   }

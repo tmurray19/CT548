@@ -8,7 +8,7 @@ import java.util.ArrayList;
  
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
+
  
 
 
@@ -23,23 +23,53 @@ public class Country extends Area{
 		cities.add(c);
 	}
 	
-	// Returns all cities in arraylist
+	// prints all cities in arraylist
 	public void getCities() {
 		for(City c: this.cities) {
 			System.out.println(c.getName());
 		}
 	}
 	
+	
 	// Returns total population of country, based on cities
 	@Override
 	public long getPop() {
-		long r = 0;
+		long tot = 0;
 		for(City c: cities) {
-			r += (c.getPop());
+			tot += (c.getPop());
 		}
-		return r;
+		return tot;
 	}
 	
+	// Gets capital of country
+	public City getCapital() {
+		City cap = null;
+		for(City c: this.cities) {
+			if(c.getCapital()) {
+				cap = c;
+			}
+		
+		}
+		return cap;
+	}
+	
+	
+	
+	
+	// Looks for a city, given a name
+	public City queryList(String q) {
+		// Initialise city as null to return nothing if list doesn't exist
+		City query = null;
+		// Loops city list
+		for(City c: this.cities) {
+			// If the cities name is what the user is looking for, it returns the city class
+			if(c.getName().equals(q)) {
+				query = c;
+			}
+			
+		}
+		return query;
+	}
 	
 	
 	// Constructor 
@@ -75,6 +105,7 @@ public class Country extends Area{
 					// Adding it to list
 					addCity(city);
 				}
+				// Breaks out of constructor when finished, to stop any unnecessary calculation
 				break;
 			}
 			

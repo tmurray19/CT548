@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 // But I think it makes more sense to have a static class that just references these function
 public class Utility {
 	
+	// For internal reference to jsonfile
 	private static JSONObject jsonCities;
 
 	
@@ -28,7 +29,7 @@ public class Utility {
 	
 	
 	//Returns the array of countries bordering a given country
-	public static JSONArray getCountryBorder(String country) {
+	public static JSONArray getCountryBorder(Country country) {
 		try {
 			dataSetter();
 			//Get borders of countries
@@ -36,7 +37,7 @@ public class Utility {
 
 			//Get countries info
 			//JSONArray countries = (JSONArray) jsonCities.get("countries");
-			JSONArray countryBorder = (JSONArray) borders.get(country);
+			JSONArray countryBorder = (JSONArray) borders.get(country.getName());
 			return countryBorder;
 
 		}
@@ -47,9 +48,9 @@ public class Utility {
 	}
 	
 	//Checks if two given countries share a border
-	public static Boolean borderChecker(String country1, String country2) {
+	public static boolean borderChecker(Country country1, Country country2) {
 		// If the list of a given country contains the other given country
-		if(getCountryBorder(country1).contains(country2)) {
+		if(getCountryBorder(country1).contains(country2.getName())) {
 			//returns true
 			return true;
 		}
@@ -67,4 +68,40 @@ public class Utility {
 			System.out.println(objectInArray.get("name"));
 		}
 	}
+	
+	// These three methods are for deciding which strategy to initialise
+	// They are to be used in conjunction with the strategy 'web'
+	// These could have been embedded somewhere in the web, but
+	// It's much easier to host them here, with the other utility functions
+	
+	// Check if two counties are capital
+	public static boolean flyFrom(City a, City b) {
+		if(a.getCapital() && b.getCapital()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public static boolean busFrom(Country conA, City cityA, Country conB, City cityB) {
+		if((conA.getName().equals(conB.getName())) && !(cityA.getName().equals(cityB.getName()))) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public static boolean trainFrom(Country conA, City cityA, Country conB, City cityB) {
+		if(getCountryBorder(conA).contains(conB.getName()) && !(cityA.getName().equals(cityB.getName()))) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
+	
+	
+

@@ -55,7 +55,7 @@ public class City extends Area{
 		this.capital = true;
 	}
 
-	
+	// Returns capital status of City
 	public boolean getCapital() {
 		return this.capital;
 	}
