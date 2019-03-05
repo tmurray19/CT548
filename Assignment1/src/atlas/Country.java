@@ -30,6 +30,10 @@ public class Country extends Area{
 		}
 	}
 	
+	// Returns the whole array to user
+	public ArrayList<City> giveArray(){
+		return this.cities;
+	}
 	
 	// Returns total population of country, based on cities
 	@Override

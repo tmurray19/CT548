@@ -2,7 +2,7 @@ package atlas;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
+import java.util.ArrayList;
 
 // Decided to define a utility class to handle and hold various functions
 // I felt these functions could be fit into the Country class
@@ -22,6 +22,7 @@ public class Utility {
 	
 		}
 		//This exception is to stop misreading files
+		//Same as all other cases below
 		catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -60,13 +61,46 @@ public class Utility {
 		}
 	}
 	
-	// Gets the list of countries in the list
+	// Gets the list of countries in the json file
 	public static void getCountries() {
 		JSONArray countries = (JSONArray) FileParser.dataSetter().get("countries");
 		for(int i = 0, size = countries.size(); i < size; i++) {
 			JSONObject objectInArray = (JSONObject) countries.get(i);
 			System.out.println(objectInArray.get("name"));
 		}
+	}
+	
+	// Checks if you've reached your destination
+	public static boolean areWeThereYet(City a, City Dest) {
+		if(a.getName().equals(Dest.getName())) {
+			System.out.println("Destination Reached");
+			return true;
+		}
+		
+		else {
+			return false;
+		}
+	}
+	
+	// Returns string list of all common borders of two countries
+	public static ArrayList<String> commonBorders(Country A, Country B){
+		// Safely adds bordering strings to two lists
+		ArrayList<String> r = new ArrayList<String>();
+		JSONArray rArry = getCountryBorder(A);
+		for(Object i: rArry) {
+			r.add(i.toString());
+		}
+		
+		ArrayList<String> l = new ArrayList<String>();
+		JSONArray lArry = getCountryBorder(B);
+		for(Object j: lArry) {
+			l.add(j.toString());
+		}
+		
+		// Returns list
+		ArrayList<String> common = new ArrayList<String>(r);
+		common.retainAll(l);
+		return common;
 	}
 	
 	// These three methods are for deciding which strategy to initialise

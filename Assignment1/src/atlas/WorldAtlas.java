@@ -1,5 +1,6 @@
 package atlas;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 // The main file, to showcase all the possibilities of the project
@@ -79,17 +80,42 @@ public class WorldAtlas {
 						City destinationCity = cityB;
 						Country destinationCountry = countryB;
 						
+						
 						// While that destination is not reached
 						while(!destinationReached) {
+							cityB = destinationCity;
+							countryB = destinationCountry;
 							// If your cities name and the country's name is the same, then your destination is reached
-							if(cityA.getName().equals(destinationCity.getName()) && countryA.getName().equals(destinationCountry.getName())) {
+							if(cityA.getName().equals(destinationCity.getName())) {
 								// Set the destination as reached and break the case, as it's no longer needed
 								System.out.println("Destination Reached.");
-								destinationReached = true;
 								break;
 							}
 							// This the case that you're in a capital needing to go to another country
 							else {
+
+								// Fixing the case where two countries are bordering a common country
+								// and you are in a non-capital city, traveling to a non-capital city 
+								// It is faster to take a train through this bordering country
+								// This code makes that clause possible
+								if(!(Utility.commonBorders(countryA, destinationCountry).isEmpty())) {
+									// Gets that common country, and intialises it as a Country
+									ArrayList<String> r = (Utility.commonBorders(countryA, destinationCountry));
+									String k = r.get(0);
+									Country connecterCounty = new Country(k);
+									ArrayList<City> cities = connecterCounty.giveArray();
+									// This gets a (hopefully) non-capital city in the connector
+									// (otherwise the program would default to flight)
+									City connecterCity = cities.get(1);
+									
+									TravelContext t = new TravelContext(new ByTrain());
+									t.travelTo(countryA, cityA, connecterCounty, connecterCity);
+									countryA = connecterCounty;
+									cityA = connecterCity;
+									
+								}
+								
+								
 								if(Utility.flyFrom(cityA, cityB)) {
 									TravelContext t = new TravelContext(new ByPlane());
 									t.travelTo(countryA, cityA, countryB, cityB);
@@ -97,6 +123,11 @@ public class WorldAtlas {
 									// Update the country you are in as the one you moved to
 									countryA = countryB;
 									cityA = cityB;
+									
+									if(Utility.areWeThereYet(cityA, destinationCity)) {
+										break;
+									}
+			
 			
 								}
 								// This is the case that you can travel between the cities by bus
@@ -108,8 +139,13 @@ public class WorldAtlas {
 									// Update the country you are in as the one you moved to
 									countryA = countryB;
 									cityA = cityB;
+									
+									if(Utility.areWeThereYet(cityA, destinationCity)) {
+										break;
+									}
 			
 								}
+								
 								
 								if(Utility.trainFrom(countryA, cityA, countryB, cityB)) {
 									TravelContext t = new TravelContext(new ByTrain());
@@ -117,24 +153,38 @@ public class WorldAtlas {
 									
 									countryA = countryB;
 									cityA = cityB;
+									
+									
+									if(Utility.areWeThereYet(cityA, destinationCity)) {
+										break;
+									}
+			
 								}
 								
-								// Otherwise move to capital by default
-								// This is just the case that nothing works
-								else {
-									// In some cases, the loop can have you ending up in the captial
-									// This results in a multi stage journey
-									// where you move into the capital any stage after the first
-									// e.g Galway, Ireland -> Paris, France
-									// This clause is just a catch all for if thats the case
-									if(!(cityA.getName().equals(countryA.getCapital().getName()))){	
-										TravelContext t = new TravelContext(new ByBus());
-										t.travelTo(countryA, cityA, countryA, countryA.getCapital());
+								
+								// In some cases, the loop can have you ending up in the captial
+								// This results in a multi stage journey
+								// where you move into the capital any stage after the first
+								// e.g Galway, Ireland -> Paris, France
+								// This clause is just a catch all for if thats the case
+								if(!(cityA.getName().equals(countryA.getCapital().getName()))){	
+									TravelContext t = new TravelContext(new ByBus());
+									t.travelTo(countryA, cityA, countryA, countryA.getCapital());
+									
+									
+									// Update the country you are in as the one you moved to
+									cityA = countryA.getCapital();
+								}
+
+								// If nothing else works, it should be because you are currently in the capital, with no
+								// way to get to city without flying
+								// This fixes that issue and runs through the code again
+								else{
+										TravelContext t = new TravelContext(new ByPlane());
+										t.travelTo(countryA, cityA, destinationCountry, destinationCountry.getCapital());
 										
-										
-										// Update the country you are in as the one you moved to
-										cityA = countryA.getCapital();
-									}
+										cityA = destinationCountry.getCapital();
+										countryA = destinationCountry;
 								}
 							}
 						}
